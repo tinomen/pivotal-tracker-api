@@ -39,9 +39,17 @@ module Pivotal
     def stories(options = {})
       Story.find(:all, :params => options.update(:project_id => id))
     end
+    
+    def iterations(options = {})
+      Iteration.find(:all, :params => options.update(:project_id => id))
+    end
   end
   
   class Story < Base
+    self.site = "http://www.pivotaltracker.com/services/v2/projects/:project_id"
+  end
+  
+  class Iteration < Base
     self.site = "http://www.pivotaltracker.com/services/v2/projects/:project_id"
   end
   
